@@ -1,0 +1,11 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=harshit
+WorkingDirectory=/home/harshit/projects/gameinsighter/gameinsighter_project
+ExecStart=/usr/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/harshit/projects/gameinsighter/gameinsighter_project/gameinsighter.sock gameinsighter.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
