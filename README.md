@@ -1,1 +1,1 @@
-# gameinsisghter
+# gameinsighter
