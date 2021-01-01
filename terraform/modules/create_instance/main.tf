@@ -1,20 +1,20 @@
 provider "aws" {
-  region = "us-east-2"
-  shared_credentials_file = "~/aws/credentials"
+  region                  = var.region
+  shared_credentials_file = var.cred_file
 }
 
 resource "aws_instance" "gi_instance" {
-  ami           = "ami-0a91cd140a1fc148a"
-  instance_type = "t2.micro"
-  security_groups = ["gi-ec2-sg"]
+  ami             = var.instance_ami
+  instance_type   = var.instance_type
+  security_groups = var.instance_sec_grp
   tags = {
     project = "gameinsighter"
   }
 
   ebs_block_device {
-    device_name = "/dev/sda1"
+    device_name           = var.ebs_device_name
     delete_on_termination = true
-    volume_size           = 8
-    volume_type           = "gp2"
+    volume_size           = var.ebs_vol_size
+    volume_type           = var.ebs_vol_type
   }
 }
