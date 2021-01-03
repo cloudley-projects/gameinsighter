@@ -19,7 +19,7 @@ module "rds" {
   rds_eng_version         = "8.0.20"
   rds_identifier          = "gameinsighterdb"
   rds_username            = "giadmin"
-  rds_password            = ""
+  rds_password            = "SQL$9mhp"
   rds_instance_class      = "db.t2.micro"
   rds_allocated_storage   = 20
   rds_availability_zone   = "us-east-2a"
