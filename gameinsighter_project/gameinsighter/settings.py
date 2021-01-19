@@ -24,7 +24,7 @@ SECRET_KEY = '6+)@2+ry4p4)nj%k-dq#o=2uh3v7jtctc8u)$5l4k%$9*vzv6y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+USE_S3 = False
 ALLOWED_HOSTS = ["*"]
 
 
@@ -130,7 +130,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-USE_S3 = False
 if USE_S3:
     # aws settings
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')

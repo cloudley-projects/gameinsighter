@@ -29,3 +29,7 @@ variable "ebs_vol_size" {
 variable "ebs_vol_type" {
   default = "gp2"
 }
+
+variable "ec2_key_name" {
+  default = ""
+}
