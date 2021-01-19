@@ -8,6 +8,7 @@ resource "aws_instance" "gi_instance" {
   instance_type   = var.instance_type
   security_groups = var.instance_sec_grp
   key_name        = var.ec2_key_name
+
   tags = {
     project = "gameinsighter"
   }

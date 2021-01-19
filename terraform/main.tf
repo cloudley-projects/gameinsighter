@@ -9,7 +9,6 @@ module "instances" {
   instance_sec_grp = ["gi-ec2-sg"]
   ebs_vol_type     = "gp2"
   ec2_key_name     = "gikp"
-
 }
 module "rds" {
   source                  = "./modules/create_rds"
