@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "gameinsighter-bucket"
+    key    = "state/gi-tf-state"
+    region = "us-east-2"
+  }
+}
+
 module "instance1" {
   source           = "./modules/create_instance"
   region           = var.aws_region
@@ -42,7 +50,7 @@ module "rds" {
 }
 
 module "load_balancer" {
-  source = "./modules/create_lb"
-  region           = var.aws_region
-  gi_instances_id = [module.instance1.gi_instance_id,module.instance2.gi_instance_id]
+  source          = "./modules/create_lb"
+  region          = var.aws_region
+  gi_instances_id = [module.instance1.gi_instance_id, module.instance2.gi_instance_id]
 }
