@@ -24,7 +24,16 @@
     repo: 'https://github.com/cloudley-projects/gameinsighter.git'
     dest: /home/ubuntu/cloudley-projects
     clone: yes
-    update: no
+    update: yes
+    force: yes
+
+- name: Change Project Permissions
+  ansible.builtin.file: 
+    path: /home/ubuntu/cloudley-projects
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+    recurse: yes
 
 - name: Copy file with owner and permissions
   copy:
