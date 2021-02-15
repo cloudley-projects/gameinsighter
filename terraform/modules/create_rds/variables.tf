@@ -25,7 +25,8 @@ variable "rds_username" {
 }
 
 variable "rds_password" {
-  default = ""
+  type = string
+  sensitive = true
 }
 
 variable "rds_instance_class" {

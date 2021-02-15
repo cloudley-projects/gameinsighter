@@ -5,3 +5,7 @@ output "gi_instance_public_ip" {
 output "gi_instance_private_ip" {
   value = aws_instance.gi_instance.private_ip
 }
+
+output "gi_instance_id" {
+  value = aws_instance.gi_instance.id
+}

@@ -6,7 +6,7 @@ provider "aws" {
 resource "aws_instance" "gi_instance" {
   ami             = var.instance_ami
   instance_type   = var.instance_type
-  security_groups = var.instance_sec_grp
+  vpc_security_group_ids = var.instance_sec_grp
   key_name        = var.ec2_key_name
 
   tags = {
