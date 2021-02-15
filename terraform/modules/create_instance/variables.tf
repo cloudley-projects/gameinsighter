@@ -2,10 +2,6 @@ variable "region" {
   default = "us-east-2"
 }
 
-variable "cred_file" {
-  default = ""
-}
-
 variable "instance_ami" {
   default = "ami-0a91cd140a1fc148a"
 }
