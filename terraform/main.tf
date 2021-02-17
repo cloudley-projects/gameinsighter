@@ -1,7 +1,14 @@
+terraform {
+  backend "s3" {
+    bucket = "gameinsighter-bucket"
+    key    = "state/gi-tf-state"
+    region = "us-east-2"
+  }
+}
+
 module "instance1" {
   source           = "./modules/create_instance"
   region           = var.aws_region
-  cred_file        = var.aws_creds
   instance_ami     = "ami-0a91cd140a1fc148a"
   instance_type    = "t2.micro"
   ebs_device_name  = "/dev/sda1"
@@ -14,7 +21,6 @@ module "instance1" {
 module "instance2" {
   source           = "./modules/create_instance"
   region           = var.aws_region
-  cred_file        = var.aws_creds
   instance_ami     = "ami-0a91cd140a1fc148a"
   instance_type    = "t2.micro"
   ebs_device_name  = "/dev/sda1"
@@ -27,7 +33,6 @@ module "instance2" {
 module "rds" {
   source                  = "./modules/create_rds"
   region                  = var.aws_region
-  cred_file               = var.aws_creds
   rds_sec_grp             = "gi-rds-sg"
   rds_engine              = "mysql"
   rds_eng_version         = "8.0.20"
@@ -45,8 +50,7 @@ module "rds" {
 }
 
 module "load_balancer" {
-  source = "./modules/create_lb"
-  region           = var.aws_region
-  cred_file        = var.aws_creds
-  gi_instances_id = [module.instance1.gi_instance_id,module.instance2.gi_instance_id]
+  source          = "./modules/create_lb"
+  region          = var.aws_region
+  gi_instances_id = [module.instance1.gi_instance_id, module.instance2.gi_instance_id]
 }

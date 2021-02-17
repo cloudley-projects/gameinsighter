@@ -1,6 +1,5 @@
 provider "aws" {
   region                  = var.region
-  shared_credentials_file = var.cred_file
 }
 data "aws_vpc" "selected" {
   id = "vpc-229b2249"
