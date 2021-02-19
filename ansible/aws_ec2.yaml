@@ -1,0 +1,11 @@
+plugin: aws_ec2
+regions:
+  - us-east-2
+    #hostnames:
+    #- tag:project=gameinsighter
+keyed_groups:
+  - key: tags.project
+    prefix: 'hosts_'
+    separator: ''
+hostnames:
+  - network-interface.association.public-ip

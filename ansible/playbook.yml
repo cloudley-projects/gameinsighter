@@ -1,4 +1,4 @@
 ---
-- hosts: "gi_hosts"
+- hosts: "hosts_gameinsighter"
   roles: 
     - webapp_dependencies
