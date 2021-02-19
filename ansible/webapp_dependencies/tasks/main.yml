@@ -28,7 +28,7 @@
     force: yes
 
 - name: Change Project Permissions
-  ansible.builtin.file: 
+  file: 
     path: /home/ubuntu/cloudley-projects
     owner: ubuntu
     group: ubuntu
