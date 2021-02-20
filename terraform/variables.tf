@@ -5,3 +5,5 @@ variable "rds_password" {
   type      = string
   sensitive = true
 }
+variable "main_instance_count" {
+}

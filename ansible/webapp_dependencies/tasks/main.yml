@@ -4,6 +4,11 @@
   apt: 
     update_cache: yes
 
+- name: Install Python
+  apt: 
+    name: python
+    update_cache: yes
+
 - name: Install docker-compose
   apt:
     name: docker-compose
@@ -28,7 +33,7 @@
     force: yes
 
 - name: Change Project Permissions
-  ansible.builtin.file: 
+  file: 
     path: /home/ubuntu/cloudley-projects
     owner: ubuntu
     group: ubuntu
@@ -37,16 +42,16 @@
 
 - name: Copy file with owner and permissions
   copy:
-    src: /etc/mysql/db.cnf
+    src: ../../../etc/database/db.cnf
     dest: /home/ubuntu/cloudley-projects/etc/database/db.cnf
     owner: ubuntu
     group: ubuntu
     force: yes
-    mode: '0644'
+    mode: '0600'
 
 - name: Copy systemd script file with owner and permissions
   copy:
-    src: /home/django/cloudley-projects/gameinsighter/etc/systemd_scripts/docker-compose-gi.service
+    src: ../../../etc/systemd_scripts/docker-compose-gi.service
     dest: /etc/systemd/system/
     owner: root
     group: root

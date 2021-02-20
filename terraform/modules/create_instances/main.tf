@@ -1,0 +1,22 @@
+provider "aws" {
+  region = var.region
+}
+data "aws_security_group" "sec_grp" {
+  name = var.gi_ins_sec_grp
+}
+
+resource "aws_instance" "instance" {
+count =var.gi_ins_count
+ami     = var.gi_ins_ami
+instance_type = var.gi_ins_type
+key_name = var.gi_key_name
+vpc_security_group_ids = [data.aws_security_group.sec_grp.id]
+tags = {
+    project = "gameinsighter"
+  }
+  root_block_device {
+    delete_on_termination = true
+    volume_size           = var.gi_root_vol_size
+    volume_type           = var.gi_root_vol_type
+  }
+}
