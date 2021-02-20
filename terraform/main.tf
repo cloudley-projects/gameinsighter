@@ -6,30 +6,6 @@ terraform {
   }
 }
 
-module "instance1" {
-  source           = "./modules/create_instance"
-  region           = var.aws_region
-  instance_ami     = "ami-0a91cd140a1fc148a"
-  instance_type    = "t2.micro"
-  ebs_device_name  = "/dev/sda1"
-  ebs_vol_size     = 10
-  instance_sec_grp = ["sg-0c8cacb1e1be2d217"]
-  ebs_vol_type     = "gp2"
-  ec2_key_name     = "gikp"
-}
-
-module "instance2" {
-  source           = "./modules/create_instance"
-  region           = var.aws_region
-  instance_ami     = "ami-0a91cd140a1fc148a"
-  instance_type    = "t2.micro"
-  ebs_device_name  = "/dev/sda1"
-  ebs_vol_size     = 10
-  instance_sec_grp = ["sg-0c8cacb1e1be2d217"]
-  ebs_vol_type     = "gp2"
-  ec2_key_name     = "gikp"
-}
-
 module "rds" {
   source                  = "./modules/create_rds"
   region                  = var.aws_region
@@ -52,5 +28,17 @@ module "rds" {
 module "load_balancer" {
   source          = "./modules/create_lb"
   region          = var.aws_region
-  gi_instances_id = [module.instance1.gi_instance_id, module.instance2.gi_instance_id]
+  gi_instances_id = module.gi_instances.instance_id
+}
+
+module "gi_instances" {
+  source        = "./modules/create_instances"
+  gi_ins_count =var.main_instance_count
+  region        = var.aws_region
+  gi_ins_ami  = "ami-0a91cd140a1fc148a"
+  gi_ins_type = "t2.micro"
+  gi_key_name  = "gikp"
+  gi_ins_sec_grp = "gi-ec2-sg"
+  gi_root_vol_size     = 8
+  gi_root_vol_type     = "gp2"
 }
