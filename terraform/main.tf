@@ -41,4 +41,6 @@ module "gi_instances" {
   gi_ins_sec_grp = "gi-ec2-sg"
   gi_root_vol_size     = 8
   gi_root_vol_type     = "gp2"
+  user_data_path ="./user_data.sh"
+  user_data_variables={}
 }

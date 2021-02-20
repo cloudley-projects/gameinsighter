@@ -10,3 +10,5 @@ variable "gi_key_name" {}
 variable "gi_ins_sec_grp" {}
 variable "gi_root_vol_size" {}
 variable "gi_root_vol_type" {}
+variable "user_data_path"{}
+variable "user_data_variables" {}
