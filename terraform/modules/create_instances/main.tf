@@ -6,7 +6,7 @@ data "aws_security_group" "sec_grp" {
 }
 
 resource "aws_instance" "instance" {
-count =var.gi_ins_count
+count =2
 ami     = var.gi_ins_ami
 instance_type = var.gi_ins_type
 key_name = var.gi_key_name
